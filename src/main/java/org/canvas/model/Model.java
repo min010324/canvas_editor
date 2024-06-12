@@ -8,7 +8,7 @@ import org.canvas.observer.Subject;
 
 public class Model implements Subject {
 
-    private final ArrayList<GraphicObject> graphicObjects = new ArrayList<>();
+    private final ArrayList<GraphicInterface> graphicObjects = new ArrayList<>();
     private final ArrayList<Observer> observers = new ArrayList<>();
 
     private final GraphicComposite graphicComposite = new GraphicComposite();
@@ -20,26 +20,19 @@ public class Model implements Subject {
         if (size == 0) {
             object.setId(0);
         } else {
-            object.setId(graphicObjects.get(size - 1).id);
+            object.setId(graphicObjects.get(size - 1).getID());
         }
 
         graphicObjects.add(object);
-//        System.out.println(gson.toJson(graphicObjects));
         notifyObserver();
     }
 
     public void updateObject(GraphicInterface object) {
-//        for (GraphicObject o : graphicObjects) {
-//            if (o.getID() == object.getID()) {
-//                o.setObjectInfo(object.getX(), object.getY(), object.getWidth(),
-//                    object.getHeight());
-//            }
-//        }
         notifyObserver();
     }
 
     public GraphicInterface getObjectAtPoint(Point point) {
-        for (GraphicObject object : graphicObjects) {
+        for (GraphicInterface object : graphicObjects) {
             if (object.contains(point)) {
                 return object;
             }
@@ -49,6 +42,24 @@ public class Model implements Subject {
 
     public GraphicComposite getGraphicComposite() {
         return graphicComposite;
+    }
+
+    public void bringObjectToFront() {
+        for (GraphicInterface object : graphicComposite.getGraphicObjects()) {
+            graphicObjects.remove(object);
+            graphicObjects.add(0, object);
+        }
+        notifyObserver();
+        notifyObserverClickedObject();
+    }
+
+    public void bringObjectToBack() {
+        for (GraphicInterface object : graphicComposite.getGraphicObjects()) {
+            graphicObjects.remove(object);
+            graphicObjects.add(object);
+        }
+        notifyObserver();
+        notifyObserverClickedObject();
     }
 
     public void registerObserver(Observer o) {

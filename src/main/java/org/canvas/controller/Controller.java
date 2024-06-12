@@ -53,5 +53,12 @@ public class Controller extends MouseAdapter {
         model.notifyObserverClickedObject();
     }
 
+    public void bringObjectToFront() {
+        model.bringObjectToFront();
+    }
+
+    public void bringObjectToBack() {
+        model.bringObjectToBack();
+    }
 
 }

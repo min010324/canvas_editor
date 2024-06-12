@@ -30,5 +30,15 @@ public class CanvasMenu extends JMenuBar {
         shapeMenu.add(rectangleItem);
         shapeMenu.add(circleItem);
         add(shapeMenu);
+
+        JMenu changeOrderMenu = new JMenu("Change Order");
+        JMenuItem frontItem = new JMenuItem("Bring to Front");
+        frontItem.addActionListener(e -> controller.bringObjectToFront());
+
+        JMenuItem backItem = new JMenuItem("Bring to Back");
+        backItem.addActionListener(e -> controller.bringObjectToBack());
+        changeOrderMenu.add(frontItem);
+        changeOrderMenu.add(backItem);
+        add(changeOrderMenu);
     }
 }
