@@ -3,12 +3,34 @@ package org.canvas.model;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class GraphicComposite implements GraphicInterface, Iterable<GraphicInterface> {
 
     private ArrayList<GraphicInterface> graphicObjects = new ArrayList<>();
+
+    private int mouseStartX, mouseStartY;
+
+    public void move(int dx, int dy) {
+        for (GraphicInterface o : graphicObjects) {
+            o.move(dx, dy);
+        }
+    }
+
+    public void handleMousePressed(MouseEvent e) {
+        mouseStartX = e.getX();
+        mouseStartY = e.getY();
+    }
+
+    public void handleMouseDragged(MouseEvent e) {
+        int dx = e.getX() - mouseStartX;
+        int dy = e.getY() - mouseStartY;
+        mouseStartX = e.getX();
+        mouseStartY = e.getY();
+        move(dx, dy);
+    }
 
     public ArrayList<GraphicInterface> getGraphicObjects() {
         return graphicObjects;

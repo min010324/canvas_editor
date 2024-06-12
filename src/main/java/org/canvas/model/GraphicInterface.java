@@ -14,6 +14,8 @@ public interface GraphicInterface {
 
     void draw(Graphics2D g2);
 
+    void move(int dx, int dy);
+
     boolean contains(Point point);
 
     int getID();

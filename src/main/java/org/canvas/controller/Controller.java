@@ -1,12 +1,14 @@
 package org.canvas.controller;
 
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import org.canvas.model.GraphicComposite;
 import org.canvas.model.GraphicInterface;
 import org.canvas.model.GraphicObject;
 import org.canvas.model.Model;
 import org.canvas.observer.Observer;
 
-public class Controller {
+public class Controller extends MouseAdapter {
 
     private final Model model;
 
@@ -23,7 +25,6 @@ public class Controller {
     }
 
     public void registerObserver(Observer o) {
-        System.out.println("regist observer");
         model.registerObserver(o);
     }
 
@@ -31,14 +32,26 @@ public class Controller {
         model.removeObserver(o);
     }
 
-    public void handleMouseClick(MouseEvent e, GraphicObject selectedObject) {
-//        for (GraphicObject object : graphicObjects) {
-//            if (object.contains(e.getPoint())) {
-//                controller.handleMouseClick(e, object);
-//                break;
-//            }
-//        }
-        model.handleMouseClick(selectedObject);
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        GraphicInterface object = model.getObjectAtPoint(e.getPoint());
+        if (object != null) {
+            model.handleMouseClick(object);
+        }
     }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        GraphicComposite object = model.getGraphicComposite();
+        object.handleMousePressed(e);
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        GraphicComposite object = model.getGraphicComposite();
+        object.handleMouseDragged(e);
+        model.notifyObserverClickedObject();
+    }
+
 
 }

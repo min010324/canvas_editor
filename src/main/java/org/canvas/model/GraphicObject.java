@@ -18,6 +18,12 @@ public abstract class GraphicObject implements GraphicInterface {
         this.color = color;
     }
 
+    public void move(int dx, int dy) {
+        this.x += dx;
+        this.y += dy;
+
+    }
+
     public void setId(int id) {
         this.id = id;
     }

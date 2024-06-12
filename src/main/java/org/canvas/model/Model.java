@@ -1,6 +1,7 @@
 package org.canvas.model;
 
 import com.google.gson.Gson;
+import java.awt.Point;
 import java.util.ArrayList;
 import org.canvas.observer.Observer;
 import org.canvas.observer.Subject;
@@ -37,14 +38,14 @@ public class Model implements Subject {
         notifyObserver();
     }
 
-//    public GraphicInterface getObjectAtPoint(Point point) {
-//        for (GraphicObject object : graphicObjects) {
-//            if (object.contains(point)) {
-//                return object;
-//            }
-//        }
-//        return null;
-//    }
+    public GraphicInterface getObjectAtPoint(Point point) {
+        for (GraphicObject object : graphicObjects) {
+            if (object.contains(point)) {
+                return object;
+            }
+        }
+        return null;
+    }
 
     public GraphicComposite getGraphicComposite() {
         return graphicComposite;
