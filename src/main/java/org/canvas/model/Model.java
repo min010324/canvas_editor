@@ -7,18 +7,12 @@ import org.canvas.observer.Subject;
 
 public class Model implements Subject {
 
-    private final ArrayList<GraphicObject> graphicObjects;
-    private final ArrayList<Observer> observers;
+    private final ArrayList<GraphicObject> graphicObjects = new ArrayList<>();
+    private final ArrayList<Observer> observers = new ArrayList<>();
 
-    private ArrayList<GraphicObject> selectedGraphicObjects;
+    private final GraphicComposite graphicComposite = new GraphicComposite();
 
     public static final Gson gson = new Gson();
-
-    public Model() {
-        this.graphicObjects = new ArrayList<>();
-        this.observers = new ArrayList<>();
-        this.selectedGraphicObjects = new ArrayList<>();
-    }
 
     public void createObject(GraphicObject object) {
         int size = graphicObjects.size();
@@ -29,20 +23,31 @@ public class Model implements Subject {
         }
 
         graphicObjects.add(object);
-        System.out.println(gson.toJson(graphicObjects));
+//        System.out.println(gson.toJson(graphicObjects));
         notifyObserver();
     }
 
-    public void updateObject(GraphicObject object) {
-        for (GraphicObject o : graphicObjects) {
-            if (o.getID() == object.getID()) {
-                o.setObjectInfo(object.getX(), object.getY(), object.getWidth(),
-                    object.getHeight());
-            }
-        }
-
-        System.out.println(gson.toJson(graphicObjects));
+    public void updateObject(GraphicInterface object) {
+//        for (GraphicObject o : graphicObjects) {
+//            if (o.getID() == object.getID()) {
+//                o.setObjectInfo(object.getX(), object.getY(), object.getWidth(),
+//                    object.getHeight());
+//            }
+//        }
         notifyObserver();
+    }
+
+//    public GraphicInterface getObjectAtPoint(Point point) {
+//        for (GraphicObject object : graphicObjects) {
+//            if (object.contains(point)) {
+//                return object;
+//            }
+//        }
+//        return null;
+//    }
+
+    public GraphicComposite getGraphicComposite() {
+        return graphicComposite;
     }
 
     public void registerObserver(Observer o) {
@@ -61,16 +66,12 @@ public class Model implements Subject {
 
     public void notifyObserverClickedObject() {
         for (Observer o : observers) {
-            o.updateGraphicObjectsSelected(selectedGraphicObjects);
+            o.updateGraphicObjectsSelected(graphicComposite);
         }
     }
 
-    public void handleMouseClick(GraphicObject o) {
-        if (selectedGraphicObjects.contains(o)) {
-            selectedGraphicObjects.remove(o);
-        } else {
-            selectedGraphicObjects.add(o);
-        }
+    public void handleMouseClick(GraphicInterface o) {
+        graphicComposite.selectObject(o);
         notifyObserverClickedObject();
     }
 }

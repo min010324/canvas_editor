@@ -1,6 +1,7 @@
 package org.canvas.model;
 
-import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.Point;
 
 public interface GraphicInterface {
@@ -9,9 +10,13 @@ public interface GraphicInterface {
 
     void setObjectInfo(int x, int y, int width, int height);
 
-    void draw(Graphics g);
+    void setColor(Color color);
+
+    void draw(Graphics2D g2);
 
     boolean contains(Point point);
+
+    int getID();
 
     int getX();
 

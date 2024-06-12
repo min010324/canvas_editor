@@ -1,6 +1,7 @@
 package org.canvas.controller;
 
 import java.awt.event.MouseEvent;
+import org.canvas.model.GraphicInterface;
 import org.canvas.model.GraphicObject;
 import org.canvas.model.Model;
 import org.canvas.observer.Observer;
@@ -17,7 +18,7 @@ public class Controller {
         model.createObject(object);
     }
 
-    public void updateObject(GraphicObject object) {
+    public void updateObject(GraphicInterface object) {
         model.updateObject(object);
     }
 
@@ -31,6 +32,12 @@ public class Controller {
     }
 
     public void handleMouseClick(MouseEvent e, GraphicObject selectedObject) {
+//        for (GraphicObject object : graphicObjects) {
+//            if (object.contains(e.getPoint())) {
+//                controller.handleMouseClick(e, object);
+//                break;
+//            }
+//        }
         model.handleMouseClick(selectedObject);
     }
 

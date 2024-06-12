@@ -1,6 +1,6 @@
 package org.canvas.model;
 
-import java.awt.Graphics;
+import java.awt.Color;
 import java.awt.Point;
 
 public abstract class GraphicObject implements GraphicInterface {
@@ -8,12 +8,14 @@ public abstract class GraphicObject implements GraphicInterface {
     protected int id;
     protected int x, y;
     protected int width, height;
+    protected Color color;
 
-    public GraphicObject(int x, int y, int width, int height) {
+    public GraphicObject(int x, int y, int width, int height, Color color) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.color = color;
     }
 
     public void setId(int id) {
@@ -27,7 +29,11 @@ public abstract class GraphicObject implements GraphicInterface {
         this.height = height;
     }
 
-    public abstract void draw(Graphics g);
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+//    public abstract void draw(Graphics2D g2);
 
     public boolean contains(Point point) {
         return (point.x >= x && point.x <= x + width && point.y >= y && point.y <= y + height);
