@@ -5,13 +5,12 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import org.canvas.controller.Controller;
-import org.canvas.model.GraphicComposite;
-import org.canvas.model.GraphicObject;
+import org.canvas.model.GraphicInterface;
 import org.canvas.observer.Observer;
 
 public class PropertyPanel extends JPanel implements Observer {
 
-    private GraphicComposite selectedObject;
+    private GraphicInterface selectedObject;
 
     private final WidthPanel widthPanel;
     private final HeightPanel heightPanel;
@@ -35,25 +34,13 @@ public class PropertyPanel extends JPanel implements Observer {
 
 
     @Override
-    public void updateGraphicObjects(ArrayList<GraphicObject> objects) {
-//        this.graphicObjects = objects;
-//        repaint();
+    public void updateGraphicObjects(ArrayList<GraphicInterface> objects) {
+
     }
 
 
     @Override
-    public void updateGraphicObjectsSelected(GraphicComposite objects) {
-//        if (!objects.getGraphicObjects().isEmpty()) {
-//            this.selectedObject = objects; // todo multi select 대응
-//            widthPanel.updateWidth(selectedObject.getWidth());
-//            heightPanel.updateHeight(selectedObject.getHeight());
-//            positionPanel.updatePosition(selectedObject.getX(), selectedObject.getY());
-//        } else {
-//            this.selectedObject = null;
-//            widthPanel.updateWidth(0);
-//            heightPanel.updateHeight(0);
-//            positionPanel.updatePosition(0, 0);
-//        }
+    public void updateGraphicObjectsSelected(GraphicInterface objects) {
         this.selectedObject = objects; // todo multi select 대응
         widthPanel.updateWidth(selectedObject.getWidth());
         heightPanel.updateHeight(selectedObject.getHeight());

@@ -7,15 +7,14 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import org.canvas.controller.Controller;
-import org.canvas.model.GraphicComposite;
-import org.canvas.model.GraphicObject;
+import org.canvas.model.GraphicInterface;
 import org.canvas.model.decorator.ClickedDecorator;
 import org.canvas.observer.Observer;
 
 public class CanvasPanel extends JPanel implements Observer {
 
-    private ArrayList<GraphicObject> graphicObjects = new ArrayList<>();
-    private GraphicComposite selectedGraphicObjects;
+    private ArrayList<GraphicInterface> graphicObjects = new ArrayList<>();
+    private GraphicInterface selectedGraphicObjects;
 
     public CanvasPanel(Controller controller) {
         controller.registerObserver(this);
@@ -25,7 +24,7 @@ public class CanvasPanel extends JPanel implements Observer {
     }
 
     @Override
-    public void updateGraphicObjects(ArrayList<GraphicObject> objects) {
+    public void updateGraphicObjects(ArrayList<GraphicInterface> objects) {
         this.graphicObjects = objects;
         repaint();
     }
@@ -36,13 +35,7 @@ public class CanvasPanel extends JPanel implements Observer {
         Graphics2D graphics2D = (Graphics2D) g;
         System.out.println(graphicObjects.size());
 
-        for (GraphicObject object : graphicObjects) {
-//            if (this.selectedGraphicObjects.contains(object)) {
-//                ClickedDecorator selectedObject = new ClickedDecorator(object);
-//                selectedObject.draw(g);
-//            } else {
-//                object.draw(g);
-//            }
+        for (GraphicInterface object : graphicObjects) {
             object.draw(graphics2D);
         }
 
@@ -55,7 +48,7 @@ public class CanvasPanel extends JPanel implements Observer {
 
 
     @Override
-    public void updateGraphicObjectsSelected(GraphicComposite objects) {
+    public void updateGraphicObjectsSelected(GraphicInterface objects) {
         this.selectedGraphicObjects = objects;
         repaint();
     }

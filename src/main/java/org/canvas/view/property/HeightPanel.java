@@ -9,14 +9,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import org.canvas.controller.Controller;
-import org.canvas.model.GraphicComposite;
-import org.canvas.model.GraphicObject;
+import org.canvas.model.GraphicInterface;
 import org.canvas.observer.Observer;
 
 public class HeightPanel extends JPanel implements Observer {
 
     private final JTextField heightField = new JTextField(10);
-    private GraphicComposite selectedObject;
+    private GraphicInterface selectedObject;
 
     public HeightPanel(Controller controller) {
         controller.registerObserver(this);
@@ -52,22 +51,13 @@ public class HeightPanel extends JPanel implements Observer {
     }
 
     @Override
-    public void updateGraphicObjects(ArrayList<GraphicObject> objects) {
-//        this.graphicObjects = objects;
-//        repaint();
+    public void updateGraphicObjects(ArrayList<GraphicInterface> objects) {
     }
 
 
     @Override
-    public void updateGraphicObjectsSelected(GraphicComposite objects) {
-//        if (!objects.isEmpty()) {
-//            this.selectedObject = objects.get(0); // todo multi select 대응
-//            updateHeight(selectedObject.getHeight());
-//        } else {
-//            this.selectedObject = null;
-//            updateHeight(0);
-//        }
-        this.selectedObject = objects; // todo multi select 대응
+    public void updateGraphicObjectsSelected(GraphicInterface objects) {
+        this.selectedObject = objects;
         updateHeight(selectedObject.getHeight());
     }
 

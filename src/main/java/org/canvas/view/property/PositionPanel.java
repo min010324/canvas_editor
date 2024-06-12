@@ -12,8 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import org.canvas.controller.Controller;
-import org.canvas.model.GraphicComposite;
-import org.canvas.model.GraphicObject;
+import org.canvas.model.GraphicInterface;
 import org.canvas.observer.Observer;
 
 public class PositionPanel extends JPanel implements Observer {
@@ -21,7 +20,7 @@ public class PositionPanel extends JPanel implements Observer {
     private final JTextField xField = new JTextField(10);
     private final JTextField yField = new JTextField(10);
 
-    private GraphicComposite selectedObject;
+    private GraphicInterface selectedObject;
 
     public PositionPanel(Controller controller) {
         controller.registerObserver(this);
@@ -90,22 +89,13 @@ public class PositionPanel extends JPanel implements Observer {
     }
 
     @Override
-    public void updateGraphicObjects(ArrayList<GraphicObject> objects) {
-//        this.graphicObjects = objects;
-//        repaint();
+    public void updateGraphicObjects(ArrayList<GraphicInterface> objects) {
+
     }
 
 
     @Override
-    public void updateGraphicObjectsSelected(GraphicComposite objects) {
-//        if (!objects.isEmpty()) {
-//            this.selectedObject = objects.get(0); // todo multi select 대응
-//            updatePosition(selectedObject.getX(), selectedObject.getY());
-//        } else {
-//            this.selectedObject = null;
-//            updatePosition(0, 0);
-//        }
-
+    public void updateGraphicObjectsSelected(GraphicInterface objects) {
         this.selectedObject = objects; // todo multi select 대응
         updatePosition(selectedObject.getX(), selectedObject.getY());
     }
