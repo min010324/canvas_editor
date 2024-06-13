@@ -41,7 +41,7 @@ public class PropertyPanel extends JPanel implements Observer {
 
     @Override
     public void updateGraphicObjectsSelected(GraphicInterface objects) {
-        this.selectedObject = objects; // todo multi select 대응
+        this.selectedObject = objects;
         widthPanel.updateWidth(selectedObject.getWidth());
         heightPanel.updateHeight(selectedObject.getHeight());
         positionPanel.updatePosition(selectedObject.getX(), selectedObject.getY());

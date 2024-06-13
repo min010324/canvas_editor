@@ -96,7 +96,7 @@ public class PositionPanel extends JPanel implements Observer {
 
     @Override
     public void updateGraphicObjectsSelected(GraphicInterface objects) {
-        this.selectedObject = objects; // todo multi select 대응
+        this.selectedObject = objects;
         updatePosition(selectedObject.getX(), selectedObject.getY());
     }
 

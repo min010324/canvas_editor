@@ -52,7 +52,7 @@ public class CanvasMenu extends JMenuBar {
 
         JMenu changeCursorMode = new JMenu("Cursor");
         JMenuItem defaultModeItem = new JMenuItem("Default Mode");
-        defaultModeItem.addActionListener(e -> controller.setSelectCursorState());
+        defaultModeItem.addActionListener(e -> controller.setDefaultCursorState());
 
         JMenuItem selectModeItem = new JMenuItem("Select Mode");
         selectModeItem.addActionListener(e -> controller.setSelectCursorState());
