@@ -22,6 +22,14 @@ public class ClickedDecorator implements GraphicInterface {
         graphicObject.setColor(color);
     }
 
+    @Override
+    public void add(GraphicInterface object) {
+    }
+
+    @Override
+    public void remove(GraphicInterface object) {
+    }
+
     public void move(int dx, int dy) {
         graphicObject.move(dx, dy);
 

@@ -82,8 +82,12 @@ public class Model implements Subject {
         }
     }
 
-    public void handleMouseClick(GraphicInterface o) {
-        graphicComposite.selectObject(o);
+    public void handleMouseClick(GraphicInterface graphic) {
+        if (graphicComposite.hasGraphic(graphic)) {
+            graphicComposite.remove(graphic);
+        } else {
+            graphicComposite.add(graphic);
+        }
         notifyObserverClickedObject();
     }
 }

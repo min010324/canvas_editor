@@ -12,6 +12,10 @@ public interface GraphicInterface {
 
     void setColor(Color color);
 
+    void add(GraphicInterface object);
+
+    void remove(GraphicInterface object);
+
     void draw(Graphics2D g2);
 
     void move(int dx, int dy);

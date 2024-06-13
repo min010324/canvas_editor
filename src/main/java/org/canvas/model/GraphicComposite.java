@@ -35,13 +35,21 @@ public class GraphicComposite implements GraphicInterface {
         return graphicObjects;
     }
 
-    public void selectObject(GraphicInterface object) {
+    @Override
+    public void add(GraphicInterface object) {
+        graphicObjects.add(object);
+    }
+
+    @Override
+    public void remove(GraphicInterface object) {
         if (graphicObjects.contains(object)) {
             object.setColor(Color.black);
             graphicObjects.remove(object);
-        } else {
-            graphicObjects.add(object);
         }
+    }
+
+    public boolean hasGraphic(GraphicInterface object) {
+        return graphicObjects.contains(object);
     }
 
     public void setObjectInfo(int x, int y, int width, int height) {

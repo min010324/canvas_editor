@@ -10,6 +10,15 @@ public abstract class GraphicObject implements GraphicInterface {
     protected int width, height;
     protected Color color;
 
+    @Override
+    public void add(GraphicInterface object) {
+    }
+
+    @Override
+    public void remove(GraphicInterface object) {
+    }
+
+
     public GraphicObject(int x, int y, int width, int height, Color color) {
         this.x = x;
         this.y = y;
@@ -21,7 +30,6 @@ public abstract class GraphicObject implements GraphicInterface {
     public void move(int dx, int dy) {
         this.x += dx;
         this.y += dy;
-
     }
 
     public void setId(int id) {
