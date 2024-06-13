@@ -21,10 +21,6 @@ public class Controller extends MouseAdapter {
         this.cursor = new Cursor(model);
     }
 
-    public Model getModel() {
-        return this.model;
-    }
-
     public void createObject(GraphicObject object) {
         model.createObject(object);
     }
