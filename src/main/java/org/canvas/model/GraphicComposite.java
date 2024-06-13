@@ -5,9 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Iterator;
 
-public class GraphicComposite implements GraphicInterface, Iterable<GraphicInterface> {
+public class GraphicComposite implements GraphicInterface {
 
     private ArrayList<GraphicInterface> graphicObjects = new ArrayList<>();
 
@@ -43,11 +42,6 @@ public class GraphicComposite implements GraphicInterface, Iterable<GraphicInter
         } else {
             graphicObjects.add(object);
         }
-    }
-
-    @Override
-    public Iterator<GraphicInterface> iterator() {
-        return graphicObjects.iterator();
     }
 
     public void setObjectInfo(int x, int y, int width, int height) {

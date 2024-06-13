@@ -6,6 +6,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import org.canvas.controller.Controller;
 import org.canvas.model.object.CircleObject;
+import org.canvas.model.object.LineObject;
 import org.canvas.model.object.RectangleObject;
 
 public class CanvasMenu extends JMenuBar {
@@ -27,8 +28,16 @@ public class CanvasMenu extends JMenuBar {
             e -> controller.createObject(
                 new CircleObject(defaultPosition, defaultPosition, defaultSize, defaultSize,
                     defaultColor)));
+
+        JMenuItem lineItem = new JMenuItem("Line");
+        lineItem.addActionListener(
+            e -> controller.createObject(
+                new LineObject(defaultPosition, defaultPosition, 100, 100, defaultSize, defaultSize,
+                    defaultColor)));
+
         shapeMenu.add(rectangleItem);
         shapeMenu.add(circleItem);
+        shapeMenu.add(lineItem);
         add(shapeMenu);
 
         JMenu changeOrderMenu = new JMenu("Change Order");
